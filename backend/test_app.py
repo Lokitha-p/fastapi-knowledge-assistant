@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from backend.agents.ingestion_agent import IngestionAgent
 from backend.agents.summary_agent import SummaryAgent
+from backend.agents.faq_agent import FAQAgent
 
 
 app = FastAPI(title="FastAPI Knowledge Assistant")
@@ -22,10 +23,12 @@ def summarize_docs():
     agent.run()
     return {"status": "success", "message": "Summaries generated"}
 
-
 @app.post("/faqs")
 def generate_faqs():
-    return {"status": "pending", "message": "FAQAgent not wired yet"}
+    agent = FAQAgent()
+    agent.run()
+    return {"status": "success", "message": "FAQs generated"}
+
 
 class AskRequest(BaseModel):
     question: str
