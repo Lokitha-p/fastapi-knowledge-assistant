@@ -6,12 +6,12 @@ import os
 
 from backend.config.settings import FASTAPI_DOC_URLS
 from backend.core.vectorstore import get_chroma_client
-
+from backend.config.settings import CHROMA_DB_PATH
 
 class IngestionAgent:
     def __init__(self):
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
-        self.persist_path = "backend/data/chroma_db"
+        self.persist_path = CHROMA_DB_PATH
 
         os.makedirs(self.persist_path, exist_ok=True)
 

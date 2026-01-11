@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from backend.agents.ingestion_agent import IngestionAgent
+from backend.agents.summary_agent import SummaryAgent
+
 
 app = FastAPI(title="FastAPI Knowledge Assistant")
 
@@ -13,9 +15,13 @@ def ingest_docs():
     agent = IngestionAgent()
     agent.run()
     return {"status": "success", "message": "FastAPI docs ingested into ChromaDB"}
+
 @app.post("/summarize")
 def summarize_docs():
-    return {"status": "pending", "message": "SummaryAgent not wired yet"}
+    agent = SummaryAgent()
+    agent.run()
+    return {"status": "success", "message": "Summaries generated"}
+
 
 @app.post("/faqs")
 def generate_faqs():

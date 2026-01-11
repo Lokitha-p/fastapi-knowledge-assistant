@@ -10,3 +10,4 @@ FASTAPI_DOC_URLS = [
     "https://fastapi.tiangolo.com/tutorial/middleware/",
     "https://fastapi.tiangolo.com/tutorial/background-tasks/",
 ]
+CHROMA_DB_PATH = "backend/data/chroma_db"
