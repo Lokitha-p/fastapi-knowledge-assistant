@@ -1,0 +1,21 @@
+# FastAPI backend
+fastapi
+uvicorn
+
+# Web scraping
+requests
+beautifulsoup4
+
+# Vector database
+chromadb
+
+# Embeddings
+sentence-transformers
+
+# LLM / transformers
+transformers
+torch
+
+# Utilities
+tqdm
+python-dotenv
