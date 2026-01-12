@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from backend.agents.ingestion_agent import IngestionAgent
 from backend.agents.summary_agent import SummaryAgent
 from backend.agents.faq_agent import FAQAgent
+from backend.agents.rag_agent import RAGAgent
 
 
 app = FastAPI(title="FastAPI Knowledge Assistant")
@@ -35,8 +36,17 @@ class AskRequest(BaseModel):
 
 @app.post("/ask")
 def ask_question(payload: AskRequest):
-    return {
-        "status": "pending",
-        "question": payload.question,
-        "message": "RAGAgent not wired yet"
-    }
+    try:
+        agent = RAGAgent()
+        result = agent.run(payload.question)
+        return {
+            "status": "success",
+            "question": result["question"],
+            "answer": result["answer"]
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "question": payload.question,
+            "error": str(e)
+        }

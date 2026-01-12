@@ -22,9 +22,8 @@ class FAQAgent:
         docs = self.collection.get(include=["documents"])
         context = " ".join(doc[:700] for doc in docs["documents"][:6])
 
-        response = self.llm(
-            FAQ_PROMPT + "\n" + context
-        )[0]["generated_text"]
+        prompt = FAQ_PROMPT + "\n" + context
+        response = self.llm(prompt)
 
         faqs = []
         blocks = response.split("\n\n")
