@@ -24,11 +24,21 @@ def summarize_docs():
     agent.run()
     return {"status": "success", "message": "Summaries generated"}
 
+
+class FAQRequest(BaseModel):
+    custom_topics: list[str] | None = None
+
+
 @app.post("/faqs")
-def generate_faqs():
+def generate_faqs(payload: FAQRequest = None):
     agent = FAQAgent()
-    agent.run()
-    return {"status": "success", "message": "FAQs generated"}
+    custom_topics = payload.custom_topics if payload else None
+    result = agent.run(custom_topics=custom_topics)
+    return {
+        "status": "success",
+        "message": "FAQs generated",
+        "data": result
+    }
 
 
 class AskRequest(BaseModel):

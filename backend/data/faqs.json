@@ -1,10 +1,133 @@
-[
-  {
-    "question": "...",
-    "answer": "..."
-  },
-  {
-    "question": "...",
-    "answer": "..."
+{
+  "topics": [
+    {
+      "topic": "Setting Upthe FastAPI Application",
+      "faqs": [
+        {
+          "question": "How do I deploy a FastAPI application to FastAPI Cloud?",
+          "answer": "Deploy your app using the commands `fastapi login` followed by `fastapi deploy`. The app will be ready at the generated URL (e.g., https://myapp.fastapicloud.dev). [Document 1]",
+          "sources": [
+            "Document 1"
+          ],
+          "topic": "Setting Upthe FastAPI Application",
+          "retrieval_distance": 0.7321764826774597
+        },
+        {
+          "question": "Where can I view the OpenAPI schema for my FastAPI application?",
+          "answer": "Access the automatically generated OpenAPI JSON schema at http://127.0.0.1:8000/openapi.json. This includes data definitions and API specifications. [Document 2]",
+          "sources": [
+            "Document 2"
+          ],
+          "topic": "Setting Upthe FastAPI Application",
+          "retrieval_distance": 0.7321764826774597
+        },
+        {
+          "question": "How can I share logic (like database connections) across path operations in FastAPI?",
+          "answer": "Use FastAPI's dependency injection system to declare required dependencies (e.g., database connections) in path operation functions. This minimizes code repetition. [Document 4]",
+          "sources": [
+            "Document 4"
+          ],
+          "topic": "Setting Upthe FastAPI Application",
+          "retrieval_distance": 0.7321764826774597
+        }
+      ],
+      "question_source": "Generated from KB"
+    },
+    {
+      "topic": "Defining Routes and Endpoints",
+      "faqs": [
+        {
+          "question": "How to do persistent database connection in FastAPI?",
+          "answer": "This information is not availablein the knowledge base.",
+          "sources": [
+            "first-steps",
+            "path-params",
+            "first-steps"
+          ],
+          "topic": "Defining Routes and Endpoints",
+          "retrieval_distance": 0.9737114906311035,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 34,
+          "stackoverflow_views": 42651,
+          "stackoverflow_link": "https://stackoverflow.com/questions/63270196/how-to-do-persistent-database-connection-in-fastapi"
+        },
+        {
+          "question": "How should I organize my path operations in FastAPI?",
+          "answer": "Declare path operations in the order theyshould be evaluated, with more specific paths declared before more general ones. This ensures correct routing when paths share a common prefix, as demonstrated in [Source: path-params].",
+          "sources": [
+            "path-params",
+            "first-steps",
+            "dependencies"
+          ],
+          "topic": "Defining Routes and Endpoints",
+          "retrieval_distance": 0.7325097918510437,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 6,
+          "stackoverflow_views": 4326,
+          "stackoverflow_link": "https://stackoverflow.com/questions/74936196/how-should-i-organize-my-path-operations-in-fastapi"
+        },
+        {
+          "question": "How to define multiple API endpoints in FastAPI with different paths but the same path parameter?",
+          "answer": "This information is not available in the knowledge base.",
+          "sources": [
+            "path-params",
+            "first-steps",
+            "dependencies"
+          ],
+          "topic": "Defining Routes and Endpoints",
+          "retrieval_distance": 0.8939030170440674,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 5,
+          "stackoverflow_views": 11564,
+          "stackoverflow_link": "https://stackoverflow.com/questions/74498191/how-to-define-multiple-api-endpoints-in-fastapi-with-different-paths-but-the-sam"
+        }
+      ],
+      "question_source": "StackOverflow",
+      "stackoverflow_questions_found": 5
+    },
+    {
+      "topic": "Running the Server and Accessing Documentation",
+      "faqs": [
+        {
+          "question": "FastAPI docs not working with nginx Ingress controller",
+          "answer": "This informationis not available in the knowledge base.",
+          "sources": [
+            "path-params",
+            "first-steps",
+            "request-files"
+          ],
+          "topic": "Running the Server and Accessing Documentation",
+          "retrieval_distance": 1.0146489143371582,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 8,
+          "stackoverflow_views": 11370,
+          "stackoverflow_link": "https://stackoverflow.com/questions/60397218/fastapi-docs-not-working-with-nginx-ingress-controller"
+        },
+        {
+          "question": "Google cloud logging shows python INFO messages as errors",
+          "answer": "This information is not availablein the knowledge base.",
+          "sources": [
+            "path-params",
+            "path-params",
+            "first-steps"
+          ],
+          "topic": "Running the Server and Accessing Documentation",
+          "retrieval_distance": 0.8927260637283325,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 8,
+          "stackoverflow_views": 3079,
+          "stackoverflow_link": "https://stackoverflow.com/questions/72936046/google-cloud-logging-shows-python-info-messages-as-errors"
+        }
+      ],
+      "question_source": "StackOverflow",
+      "stackoverflow_questions_found": 2
+    }
+  ],
+  "metadata": {
+    "question_source": "StackOverflow API",
+    "answer_source": "Knowledge Base (ChromaDB)",
+    "model": "OpenRouter LLM",
+    "total_topics": 3,
+    "total_faqs": 8
   }
-]
+}
