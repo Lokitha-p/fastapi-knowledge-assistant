@@ -3,6 +3,8 @@ from pydantic import BaseModel
 import os
 from typing import List, Optional
 from PyPDF2 import PdfReader
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from backend.agents.ingestion_agent import IngestionAgent
 from backend.agents.summary_agent import SummaryAgent
@@ -12,6 +14,18 @@ from backend.core.llm import get_llm
 
 
 app = FastAPI(title="FastAPI Knowledge Assistant")
+
+# Allow CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to restrict origins in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Serve static files from the 'data' directory
+app.mount("/data", StaticFiles(directory="backend/data"), name="data")
 
 @app.get("/health")
 def health_check():
