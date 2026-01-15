@@ -1,126 +1,160 @@
 {
   "topics": [
     {
-      "topic": "Setting Upthe FastAPI Application",
+      "topic": "Path and Query Parameters",
       "faqs": [
         {
-          "question": "How do I deploy a FastAPI application to FastAPI Cloud?",
-          "answer": "Deploy your app using the commands `fastapi login` followed by `fastapi deploy`. The app will be ready at the generated URL (e.g., https://myapp.fastapicloud.dev). [Document 1]",
-          "sources": [
-            "Document 1"
-          ],
-          "topic": "Setting Upthe FastAPI Application",
-          "retrieval_distance": 0.7321764826774597
-        },
-        {
-          "question": "Where can I view the OpenAPI schema for my FastAPI application?",
-          "answer": "Access the automatically generated OpenAPI JSON schema at http://127.0.0.1:8000/openapi.json. This includes data definitions and API specifications. [Document 2]",
-          "sources": [
-            "Document 2"
-          ],
-          "topic": "Setting Upthe FastAPI Application",
-          "retrieval_distance": 0.7321764826774597
-        },
-        {
-          "question": "How can I share logic (like database connections) across path operations in FastAPI?",
-          "answer": "Use FastAPI's dependency injection system to declare required dependencies (e.g., database connections) in path operation functions. This minimizes code repetition. [Document 4]",
-          "sources": [
-            "Document 4"
-          ],
-          "topic": "Setting Upthe FastAPI Application",
-          "retrieval_distance": 0.7321764826774597
-        }
-      ],
-      "question_source": "Generated from KB"
-    },
-    {
-      "topic": "Defining Routes and Endpoints",
-      "faqs": [
-        {
-          "question": "How to do persistent database connection in FastAPI?",
-          "answer": "This information is not availablein the knowledge base.",
-          "sources": [
-            "first-steps",
-            "path-params",
-            "first-steps"
-          ],
-          "topic": "Defining Routes and Endpoints",
-          "retrieval_distance": 0.9737114906311035,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 34,
-          "stackoverflow_views": 42651,
-          "stackoverflow_link": "https://stackoverflow.com/questions/63270196/how-to-do-persistent-database-connection-in-fastapi"
-        },
-        {
-          "question": "How should I organize my path operations in FastAPI?",
-          "answer": "Declare path operations in the order theyshould be evaluated, with more specific paths declared before more general ones. This ensures correct routing when paths share a common prefix, as demonstrated in [Source: path-params].",
+          "question": "How to get current path in FastAPI with domain?",
+          "answer": "This information is not available in the knowledgebase. The provided documents ([Source: path-params], [Source: path-params], [Source: path-params]) only cover path parameters, path order, and path converters, but do not describe retrieving the full URL (including domain) in FastAPI.",
           "sources": [
             "path-params",
-            "first-steps",
-            "dependencies"
+            "path-params",
+            "path-params"
           ],
-          "topic": "Defining Routes and Endpoints",
-          "retrieval_distance": 0.7325097918510437,
+          "topic": "Path and Query Parameters",
+          "retrieval_distance": 0.8749841451644897,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 6,
-          "stackoverflow_views": 4326,
-          "stackoverflow_link": "https://stackoverflow.com/questions/74936196/how-should-i-organize-my-path-operations-in-fastapi"
+          "stackoverflow_score": 27,
+          "stackoverflow_views": 40277,
+          "stackoverflow_link": "https://stackoverflow.com/questions/70477787/how-to-get-current-path-in-fastapi-with-domain"
         },
         {
-          "question": "How to define multiple API endpoints in FastAPI with different paths but the same path parameter?",
-          "answer": "This information is not available in the knowledge base.",
+          "question": "How to use url_for() to pass path and query data to a route using FastAPI and Jinja2?",
+          "answer": "This information is notavailable in the knowledge base.",
           "sources": [
             "path-params",
-            "first-steps",
-            "dependencies"
+            "query-params",
+            "path-params"
           ],
-          "topic": "Defining Routes and Endpoints",
-          "retrieval_distance": 0.8939030170440674,
+          "topic": "Path and Query Parameters",
+          "retrieval_distance": 0.7572672367095947,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 5,
-          "stackoverflow_views": 11564,
-          "stackoverflow_link": "https://stackoverflow.com/questions/74498191/how-to-define-multiple-api-endpoints-in-fastapi-with-different-paths-but-the-sam"
+          "stackoverflow_score": 9,
+          "stackoverflow_views": 10485,
+          "stackoverflow_link": "https://stackoverflow.com/questions/66495961/how-to-use-url-for-to-pass-path-and-query-data-to-a-route-using-fastapi-and-ji"
+        },
+        {
+          "question": "OpenAPI is missing schemas for some of the Pydantic models in FastAPI app",
+          "answer": "This informationis not available in the knowledge base.",
+          "sources": [
+            "path-params",
+            "response-model",
+            "response-model"
+          ],
+          "topic": "Path and Query Parameters",
+          "retrieval_distance": 0.6565118432044983,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 8,
+          "stackoverflow_views": 7709,
+          "stackoverflow_link": "https://stackoverflow.com/questions/71941127/openapi-is-missing-schemas-for-some-of-the-pydantic-models-in-fastapi-app"
         }
       ],
       "question_source": "StackOverflow",
       "stackoverflow_questions_found": 5
     },
     {
-      "topic": "Running the Server and Accessing Documentation",
+      "topic": "Dependency Injection",
       "faqs": [
         {
-          "question": "FastAPI docs not working with nginx Ingress controller",
-          "answer": "This informationis not available in the knowledge base.",
+          "question": "Using a dependency without having to pass it through a function tree",
+          "answer": "You can use a dependencywithout passing it through a function tree by declaring it directly in the path operation function using the `Depends` decorator. FastAPI automatically handles the dependency injection and execution flow. This is demonstrated in the documentation where dependencies are attached to path operation functions via `Depends`, eliminating the need for manual function tree traversal. [Source: dependencies]",
           "sources": [
-            "path-params",
-            "first-steps",
-            "request-files"
+            "dependencies",
+            "dependencies",
+            "dependencies"
           ],
-          "topic": "Running the Server and Accessing Documentation",
-          "retrieval_distance": 1.0146489143371582,
+          "topic": "Dependency Injection",
+          "retrieval_distance": 0.5377084612846375,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 8,
-          "stackoverflow_views": 11370,
-          "stackoverflow_link": "https://stackoverflow.com/questions/60397218/fastapi-docs-not-working-with-nginx-ingress-controller"
+          "stackoverflow_score": 24,
+          "stackoverflow_views": 27961,
+          "stackoverflow_link": "https://stackoverflow.com/questions/66464098/using-a-dependency-without-having-to-pass-it-through-a-function-tree"
         },
         {
-          "question": "Google cloud logging shows python INFO messages as errors",
+          "question": "How do I Inject Dependencies in FastAPI&#39;s Lifespan Context / startup event?",
+          "answer": "This information is notavailable in the knowledge base.",
+          "sources": [
+            "dependencies",
+            "dependencies",
+            "dependencies"
+          ],
+          "topic": "Dependency Injection",
+          "retrieval_distance": 0.646083652973175,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 9,
+          "stackoverflow_views": 4654,
+          "stackoverflow_link": "https://stackoverflow.com/questions/78923525/how-do-i-inject-dependencies-in-fastapis-lifespan-context-startup-event"
+        },
+        {
+          "question": "How does FastAPI&#39;s application mounting works?",
           "answer": "This information is not availablein the knowledge base.",
           "sources": [
-            "path-params",
-            "path-params",
+            "dependencies",
+            "dependencies",
             "first-steps"
           ],
-          "topic": "Running the Server and Accessing Documentation",
-          "retrieval_distance": 0.8927260637283325,
+          "topic": "Dependency Injection",
+          "retrieval_distance": 0.6066552996635437,
           "stackoverflow_origin": true,
           "stackoverflow_score": 8,
-          "stackoverflow_views": 3079,
-          "stackoverflow_link": "https://stackoverflow.com/questions/72936046/google-cloud-logging-shows-python-info-messages-as-errors"
+          "stackoverflow_views": 15357,
+          "stackoverflow_link": "https://stackoverflow.com/questions/64323261/how-does-fastapis-application-mounting-works"
         }
       ],
       "question_source": "StackOverflow",
-      "stackoverflow_questions_found": 2
+      "stackoverflow_questions_found": 5
+    },
+    {
+      "topic": "Database Integration",
+      "faqs": [
+        {
+          "question": "Pydantic created at and updated at fields",
+          "answer": "This information is notavailable in the knowledge base. [Source: response-model], [Source: body], [Source: body]",
+          "sources": [
+            "response-model",
+            "body",
+            "body"
+          ],
+          "topic": "Database Integration",
+          "retrieval_distance": 0.7878073453903198,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 7,
+          "stackoverflow_views": 14061,
+          "stackoverflow_link": "https://stackoverflow.com/questions/73128975/pydantic-created-at-and-updated-at-fields"
+        },
+        {
+          "question": "Pytest in FastAPI + Postgres results in: &lt;sys&gt;:0: RuntimeWarning: coroutine &#39;Connection._cancel&#39; was never awaited",
+          "answer": "This information is not available in the knowledge base. The provided documents ([Source: body], [Source: response-model], [Source: response-model]) discuss Pydantic models for request and response bodies, response models, and disabling response models, but do not cover coroutine handling, database connections, or the specific `RuntimeWarning: coroutine 'Connection._cancel' was never awaited` encountered with Pytest and Postgres.",
+          "sources": [
+            "body",
+            "response-model",
+            "response-model"
+          ],
+          "topic": "Database Integration",
+          "retrieval_distance": 1.1144425868988037,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 4,
+          "stackoverflow_views": 274,
+          "stackoverflow_link": "https://stackoverflow.com/questions/79764955/pytest-in-fastapi-postgres-results-in-sys0-runtimewarning-coroutine-con"
+        },
+        {
+          "question": "Tests with FastAPI and PostgreSQL",
+          "answer": "Thisinformation is not available in the knowledge base.",
+          "sources": [
+            "path-params",
+            "dependencies",
+            "response-model"
+          ],
+          "topic": "Database Integration",
+          "retrieval_distance": 0.9562373757362366,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 3,
+          "stackoverflow_views": 4240,
+          "stackoverflow_link": "https://stackoverflow.com/questions/76530308/tests-with-fastapi-and-postgresql"
+        }
+      ],
+      "question_source": "StackOverflow",
+      "stackoverflow_questions_found": 5
     }
   ],
   "metadata": {
@@ -128,11 +162,6 @@
     "answer_source": "Knowledge Base (ChromaDB)",
     "model": "OpenRouter LLM",
     "total_topics": 3,
-    "total_faqs": 8
+    "total_faqs": 9
   }
-<<<<<<< HEAD
-]
-
-=======
 }
->>>>>>> 0d83eb3d7d89890b6a50a405b5e85124516bfeac
