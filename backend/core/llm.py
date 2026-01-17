@@ -15,14 +15,14 @@ class MockLLM:
         Return mock responses based on the prompt content
         """
         print(f"🔄 Mock LLM processing prompt (length: {len(prompt)} chars)")
-        
+
         # Detect what kind of response is needed based on prompt keywords
         prompt_lower = prompt.lower()
-        
+
         if "extract topics" in prompt_lower or "identify the 3 most important topics" in prompt_lower:
             # For topic extraction - return JSON array
             response = '["Getting Started with FastAPI", "Request Validation and Models", "Database Integration"]'
-            
+
         elif "generate" in prompt_lower and "faqs" in prompt_lower and "knowledge base" in prompt_lower:
             # For new knowledge-base FAQ generation with citations
             response = """[
@@ -42,7 +42,7 @@ class MockLLM:
     "sources": ["Document 1"]
   }
 ]"""
-            
+
         elif "convert this specific stackoverflow question" in prompt_lower or "generalized pattern" in prompt_lower:
             # For question generalization - extract the question and generalize it
             if "Question:" in prompt:
@@ -60,15 +60,15 @@ class MockLLM:
                 response = question
             else:
                 response = "How to use <feature> in <framework>?"
-        
+
         elif "summarize" in prompt_lower or "summary" in prompt_lower:
             # For summarization
             response = "FastAPI is a modern Python web framework designed for building APIs quickly and efficiently. It provides automatic documentation, type checking, and high performance."
-            
+
         else:
             # Generic response
             response = "This is a mock response for testing. In production, replace with actual LLM API."
-        
+
         print(f"✅ Mock LLM generated response (length: {len(response)} chars)")
         return response
 

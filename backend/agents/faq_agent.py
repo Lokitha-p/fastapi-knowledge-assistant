@@ -116,14 +116,14 @@ JSON array of 3 topics:"""
         Retrieve relevant documents from knowledge base for a given query
         """
         print(f"   📚 Retrieving documents from knowledge base for: {query[:60]}...")
-        
+
         # Query the vector store for relevant documents
         results = self.collection.query(
             query_texts=[query],
             n_results=n_results,
             include=["documents", "metadatas", "distances"]
         )
-        
+
         print(f"   ✅ Retrieved {len(results['documents'][0])} relevant documents")
         return results
 
@@ -132,14 +132,14 @@ JSON array of 3 topics:"""
         Answer a StackOverflow question using ONLY the knowledge base content with citations
         """
         print(f"      🔍 Answering from KB: {question[:60]}...")
-        
+
         # Retrieve relevant documents for this specific question
         kb_results = self.retrieve_relevant_docs(f"FastAPI {topic} {question}", n_results=3)
-        
+
         documents = kb_results["documents"][0]
         metadatas = kb_results["metadatas"][0]
         distances = kb_results["distances"][0]
-        
+
         if not documents:
             return {
                 "question": question,
@@ -148,18 +148,18 @@ JSON array of 3 topics:"""
                 "topic": topic,
                 "retrieval_distance": None
             }
-        
+
         # Build context with document sources
         context_parts = []
         source_mapping = {}  # Map document numbers to actual source URLs
-        
+
         for i, (doc, meta) in enumerate(zip(documents, metadatas)):
             source = meta.get('source', 'Unknown')
             source_mapping[i+1] = source  # Store mapping for later replacement
             context_parts.append(f"[Document {i+1}] (Source: {source})\n{doc[:800]}\n")
-        
+
         context = "\n---\n".join(context_parts)
-        
+
         prompt = f"""You are a FastAPI documentation assistant. Answer the following question using ONLY the information from the knowledge base documents provided below.
 
 CRITICAL RULES:
@@ -179,15 +179,15 @@ Answer (with citation using actual source names):"""
 
         try:
             answer = self.llm(prompt).strip()
-            
+
             # Clean up the answer
             answer = answer.replace('Answer:', '').strip()
-            
+
             # Extract actual source URLs from metadata
             sources = [meta.get('source', 'Unknown') for meta in metadatas]
-            
+
             print(f"      ✅ Answer generated with {len(sources)} sources")
-            
+
             return {
                 "question": question,
                 "answer": answer,
@@ -196,7 +196,7 @@ Answer (with citation using actual source names):"""
                 "retrieval_distance": distances[0] if distances else None,
                 "stackoverflow_origin": True
             }
-            
+
         except Exception as e:
             print(f"      ❌ Failed to generate answer: {e}")
             return {
@@ -212,20 +212,20 @@ Answer (with citation using actual source names):"""
         Generate FAQ questions and answers using ONLY the knowledge base content
         """
         print(f"   🤖 Generating FAQs from knowledge base for: {topic}")
-        
+
         # Prepare context from retrieved documents
         documents = kb_results["documents"][0]
         metadatas = kb_results["metadatas"][0]
         distances = kb_results["distances"][0]
-        
+
         # Build context with document sources
         context_parts = []
         for i, (doc, meta) in enumerate(zip(documents, metadatas)):
             source = meta.get('source', 'Unknown')
             context_parts.append(f"[Document {i+1}] (Source: {source})\n{doc}\n")
-        
+
         context = "\n---\n".join(context_parts)
-        
+
         prompt = f"""You are a FastAPI documentation assistant. Generate {num_faqs} frequently asked questions and their answers about "{topic}" using ONLY the information provided in the knowledge base below.
 
 CRITICAL RULES:
@@ -250,16 +250,16 @@ JSON output:"""
 
         try:
             response = self.llm(prompt).strip()
-            
+
             # Try to parse JSON response
             # Handle cases where LLM might wrap JSON in markdown code blocks
             if "```json" in response:
                 response = response.split("```json")[1].split("```")[0].strip()
             elif "```" in response:
                 response = response.split("```")[1].split("```")[0].strip()
-            
+
             faqs = json.loads(response)
-            
+
             # Add metadata to each FAQ
             for faq in faqs:
                 if "sources" not in faq or not faq["sources"]:
@@ -267,14 +267,14 @@ JSON output:"""
                     faq["sources"] = [meta.get('source', 'Unknown') for meta in metadatas[:2]]
                 faq["topic"] = topic
                 faq["retrieval_distance"] = distances[0] if distances else None
-            
+
             print(f"   ✅ Generated {len(faqs)} FAQs with citations")
             return faqs
-            
+
         except json.JSONDecodeError as e:
             print(f"   ⚠️  Failed to parse JSON response: {e}")
             print(f"   📄 Raw response: {response[:200]}...")
-            
+
             # Fallback: create simple FAQs with metadata
             return [{
                 "question": f"What is {topic} in FastAPI?",
@@ -289,9 +289,9 @@ JSON output:"""
 
     def run(self, custom_topics=None):
         """
-        Main pipeline: 
+        Main pipeline:
         1. Extract topics from KB
-        2. Fetch real questions from StackOverflow 
+        2. Fetch real questions from StackOverflow
         3. Answer questions using KB content with citations
         """
         print("❓ FAQAgent: Generating FAQs (StackOverflow Questions + Knowledge Base Answers)...")
@@ -325,7 +325,7 @@ JSON output:"""
                     faqs = self.generate_faqs_from_kb(topic, kb_results, num_faqs=3)
                 else:
                     faqs = []
-                
+
                 faq_output["topics"].append({
                     "topic": topic,
                     "faqs": faqs,
@@ -336,7 +336,7 @@ JSON output:"""
             # Answer top 3 StackOverflow questions using knowledge base
             print(f"   💡 Answering top {min(3, len(so_questions))} questions from knowledge base...")
             faqs = []
-            
+
             for so_question in so_questions[:3]:
                 faq = self.answer_question_from_kb(so_question["title"], topic)
                 if faq:

@@ -67,3 +67,24 @@ class IngestionAgent:
             doc_id += 1
 
         print(f"🎉 Indexed {total_chunks} total chunks!")
+
+    def ingest_url(self, url: str):
+        """Scrape and ingest content from a URL."""
+        page_name = url.split("/")[-2]
+        text = self.scrape_page(url)
+        self.ingest_text(text, source=page_name, url=url)
+
+    def ingest_text(self, text: str, source: str, url: str = None):
+        """Ingest raw text into the database."""
+        chunks = self.chunk_text(text)
+        embeddings = self.embedder.encode(chunks).tolist()
+
+        ids = [f"{source}_{i}" for i in range(len(chunks))]
+        metadatas = [{"source": source, "url": url} for _ in chunks]
+
+        self.collection.add(
+            documents=chunks,
+            embeddings=embeddings,
+            ids=ids,
+            metadatas=metadatas
+        )
