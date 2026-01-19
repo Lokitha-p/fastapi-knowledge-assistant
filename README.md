@@ -35,12 +35,7 @@
 
 ## 🌐 Live Demo
 
-### 🔗 **Live Application**
-- **Frontend**: `https://your-frontend-url.vercel.app` *(Deploy in progress)*
-- **Backend API**: `https://your-backend-url.render.com` *(Deploy in progress)*
-- **API Docs**: `https://your-backend-url.render.com/docs`
-
-### 💻 **Local Development**
+### � **Local Development** (Currently Running)
 ```bash
 # Frontend
 http://localhost:5173
@@ -51,6 +46,11 @@ http://localhost:8000
 # API Documentation
 http://localhost:8000/docs
 ```
+
+### 🔗 **Live Deployment** *(Coming Soon)*
+- **Frontend**: Deploy to Vercel/Netlify
+- **Backend API**: Deploy to Render/Railway
+- **Status**: All features working locally, deployment in progress
 
 ---
 

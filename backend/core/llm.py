@@ -65,6 +65,26 @@ class MockLLM:
             # For summarization
             response = "FastAPI is a modern Python web framework designed for building APIs quickly and efficiently. It provides automatic documentation, type checking, and high performance."
 
+        elif "documentation context:" in prompt_lower or "based on the following" in prompt_lower:
+            # For RAG queries - extract and format the context
+            if "Documentation Context:" in prompt:
+                context_part = prompt.split("Documentation Context:")[1].split("Question:")[0].strip()
+                question_part = prompt.split("Question:")[1].split("Answer:")[0].strip() if "Question:" in prompt else ""
+                
+                # Extract first chunk of context for response
+                lines = context_part.split('\n')
+                relevant_text = []
+                for line in lines[:10]:  # Get first 10 lines
+                    if line.strip() and not line.startswith('['):
+                        relevant_text.append(line.strip())
+                
+                if relevant_text:
+                    response = ' '.join(relevant_text[:5])  # First 5 relevant lines
+                else:
+                    response = context_part[:500] + "..." if len(context_part) > 500 else context_part
+            else:
+                response = "Based on the documentation provided, here's a summary of the relevant information."
+
         else:
             # Generic response
             response = "This is a mock response for testing. In production, replace with actual LLM API."
