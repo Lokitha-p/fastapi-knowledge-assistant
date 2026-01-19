@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import './App.css'
 
 function App() {
@@ -319,8 +321,32 @@ function App() {
               {topic.faqs && topic.faqs.length > 0 ? (
                 topic.faqs.map((faq, idx) => (
                   <div key={idx} className="faq-item">
-                    <p className="faq-question"><strong>Q:</strong> {formatText(faq.question)}</p>
-                    <p className="faq-answer"><strong>A:</strong> {formatText(faq.answer)}</p>
+                    <div className="faq-question">
+                      <strong>Q:</strong> {faq.question}
+                    </div>
+                    <div className="faq-answer">
+                      <strong>A:</strong>
+                      <ReactMarkdown 
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          code({node, inline, className, children, ...props}) {
+                            return inline ? (
+                              <code className={className} {...props}>
+                                {children}
+                              </code>
+                            ) : (
+                              <pre>
+                                <code className={className} {...props}>
+                                  {children}
+                                </code>
+                              </pre>
+                            )
+                          }
+                        }}
+                      >
+                        {faq.answer}
+                      </ReactMarkdown>
+                    </div>
                     {faq.sources && faq.sources.length > 0 && (
                       <p className="faq-sources"><em>Sources: {faq.sources.join(', ')}</em></p>
                     )}

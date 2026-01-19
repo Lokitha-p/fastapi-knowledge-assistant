@@ -1,156 +1,156 @@
 {
   "topics": [
     {
-      "topic": "Authentication",
+      "topic": "Path Parameters and Type Validation",
       "faqs": [
         {
-          "question": "FastAPI StreamingResponse not streaming with generator function",
-          "answer": "This information is not available in the knowledgebase.",
-          "sources": [
-            "response-model",
-            "path-params",
-            "response-model"
-          ],
-          "topic": "Authentication",
-          "retrieval_distance": 1.0056345462799072,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 42,
-          "stackoverflow_views": 86813,
-          "stackoverflow_link": "https://stackoverflow.com/questions/75740652/fastapi-streamingresponse-not-streaming-with-generator-function"
-        },
-        {
-          "question": "FastAPI dependency vs middleware",
-          "answer": "This information is not available in theknowledge base. The provided documents only discuss FastAPI's dependency injection system and security mechanisms, but do not mention middleware or provide any comparison between dependencies and middleware. [Source: dependencies] [Source: dependencies] [Source: security]",
-          "sources": [
-            "dependencies",
-            "dependencies",
-            "security"
-          ],
-          "topic": "Authentication",
-          "retrieval_distance": 0.8504822254180908,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 25,
-          "stackoverflow_views": 18408,
-          "stackoverflow_link": "https://stackoverflow.com/questions/66632841/fastapi-dependency-vs-middleware"
-        },
-        {
-          "question": "FASTAPI custom middleware getting body of request inside",
-          "answer": "This information is not available in the knowledgebase.  \n[Document 2: middleware]",
-          "sources": [
-            "body",
-            "middleware",
-            "request-files"
-          ],
-          "topic": "Authentication",
-          "retrieval_distance": 0.702590823173523,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 19,
-          "stackoverflow_views": 37259,
-          "stackoverflow_link": "https://stackoverflow.com/questions/69669808/fastapi-custom-middleware-getting-body-of-request-inside"
-        }
-      ],
-      "question_source": "StackOverflow",
-      "stackoverflow_questions_found": 5
-    },
-    {
-      "topic": "Request Validation",
-      "faqs": [
-        {
-          "question": "Can I override fields from a Pydantic parent model to make them optional?",
-          "answer": "This information is not available in the knowledgebase.",
-          "sources": [
-            "response-model",
-            "body",
-            "response-model"
-          ],
-          "topic": "Request Validation",
-          "retrieval_distance": 0.6883794665336609,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 38,
-          "stackoverflow_views": 81022,
-          "stackoverflow_link": "https://stackoverflow.com/questions/65883869/can-i-override-fields-from-a-pydantic-parent-model-to-make-them-optional"
-        },
-        {
-          "question": "Using FastAPI &amp; Pydantic, how do I define an Optional field with a description",
-          "answer": "To define anOptional field with a description in a FastAPI request body using Pydantic, declare the field in your Pydantic model with a default value of `None` and include a `description` parameter. For example:\n\n```python\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    description: str = None  # Optional field with default None\n    description: str = None  # Example with explicit description\n    description: str = None, description=\"A brief description of the item\"  # With description\n```\n\nThis approach uses the default value `None` to indicate the field is optional, and the `description` parameter adds documentation. FastAPI recognizes `None` as a default value to determine optionality, while Pydantic handles validation and serialization. ([Source: body])",
-          "sources": [
-            "body",
-            "response-model",
-            "response-model"
-          ],
-          "topic": "Request Validation",
-          "retrieval_distance": 0.6635265350341797,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 24,
-          "stackoverflow_views": 55594,
-          "stackoverflow_link": "https://stackoverflow.com/questions/67569529/using-fastapi-pydantic-how-do-i-define-an-optional-field-with-a-description"
-        },
-        {
-          "question": "FastAPI - Pydantic - Value Error Raises Internal Server Error",
-          "answer": "This information is not available in the knowledge base.",
+          "question": "OpenAPI is missing schemas for some of the Pydantic models in FastAPI app",
+          "answer": "The OpenAPIschemas for Pydantic models are automatically generated by FastAPI, but they may appear missing in the documentation UI under these common scenarios:\n\n1. **Incorrect `response_model` usage**  \n   If you use `response_model` with a type other than the Pydantic model (e.g., `List[Item]` instead of `Item`), the individual model schemas won't be included.  \n   ```python\n   # Missing schema (List[Item] instead of Item)\n   @app.get(\"/items/\")\n   async def read_items(items: List[Item] = None, response_model=List[Item]):\n       return items",
           "sources": [
             "path-params",
-            "body",
-            "response-model"
-          ],
-          "topic": "Request Validation",
-          "retrieval_distance": 0.7691048383712769,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 20,
-          "stackoverflow_views": 40607,
-          "stackoverflow_link": "https://stackoverflow.com/questions/68914523/fastapi-pydantic-value-error-raises-internal-server-error"
-        }
-      ],
-      "question_source": "StackOverflow",
-      "stackoverflow_questions_found": 5
-    },
-    {
-      "topic": "Database Integration",
-      "faqs": [
-        {
-          "question": "Pydantic created at and updated at fields",
-          "answer": "This informationis not available in the knowledge base.",
-          "sources": [
             "response-model",
-            "body",
             "body"
           ],
-          "topic": "Database Integration",
-          "retrieval_distance": 0.7878073453903198,
+          "topic": "Path Parameters and Type Validation",
+          "retrieval_distance": 0.6085168123245239,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 7,
-          "stackoverflow_views": 14089,
-          "stackoverflow_link": "https://stackoverflow.com/questions/73128975/pydantic-created-at-and-updated-at-fields"
+          "stackoverflow_score": 8,
+          "stackoverflow_views": 7714,
+          "stackoverflow_link": "https://stackoverflow.com/questions/71941127/openapi-is-missing-schemas-for-some-of-the-pydantic-models-in-fastapi-app"
         },
         {
-          "question": "Pytest in FastAPI + Postgres results in: &lt;sys&gt;:0: RuntimeWarning: coroutine &#39;Connection._cancel&#39; was never awaited",
-          "answer": "This informationis not available in the knowledge base.",
+          "question": "custom fastapi query parameter validation",
+          "answer": "Toperform custom validation on FastAPI query parameters, use **dependencies** with the `Depends` decorator. This allows you to add logic beyond FastAPI's automatic type validation (e.g., format checks, range constraints, or external API calls). Here's how:\n\n### Key Concepts:\n1. **Dependencies**: Functions that process parameters before they reach your path operation.\n2. **Validation Logic**: Implement checks in your dependency function (e.g., regex, length, or external validation).\n3. **Error Handling**: FastAPI returns a `422 Unprocessable Entity` with details if validation fails.\n\n### Example: Validate Query Parameter Format\n```python\nfrom fastapi import FastAPI, Depends, Query, HTTPException\nfrom fastapi.responses import JSONResponse\nimport re\n\napp = FastAPI()\n\n# Custom dependency for email validation\ndef validate_email(email: str):\n    if not re.match(r\"[^@]+@[^@]+\\.[^@]+\", email):\n        raise HTTPException(\n            status_code=422,\n            detail={\"email\": \"Invalid email format\"},\n            headers={\"X-Error-Details\": \"Invalid email\"}\n        )\n    return email\n\n@app.get(\"/items/\")\nasync def read_items(\n    name: str = Query(..., description=\"Item name (must contain '@')\"),\n    email: str = Query(..., dependencies=[Depends(validate_email)])\n):\n    return {\"name\": name, \"email\": email}\n```\n\n### How It Works:\n1. **`Query(..., dependencies=[Depends(validate_email)])`**:  \n   Applies `validate_email` to the `email` parameter before it reaches the function.\n2. **Validation Logic**:  \n   Uses regex to check if the email is valid. Raises an `HTTPException` on failure.\n3. **Error Response**:  \n   FastAPI returns a structured error (e.g., `422 Unprocessable Entity`) with details.\n\n### Benefits:\n- **Reusability**: Reuse validation logic across multiple endpoints.\n- **Flexibility**: Add complex checks (e.g., database lookups, API calls).\n- **Clear Errors**: Detailed error messages help users fix input issues.\n\n### When to Use:\n- Validate formats (e.g., emails, URLs).\n- Enforce business rules (e.g., \"age must be between 18 and 65\").\n- Add authentication/authorization checks.\n\n### Reference:\n- [Dependencies Documentation](https://fastapi.tiangolo.com/tutorial/dependencies/) (Source: dependencies)  \n- [Query Parameters Documentation](https://fastapi.tiangolo.com/tutorial/query-params/) (Source: query-params)",
+          "sources": [
+            "query-params",
+            "dependencies",
+            "path-params"
+          ],
+          "topic": "Path Parameters and Type Validation",
+          "retrieval_distance": 0.8333331942558289,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 7,
+          "stackoverflow_views": 15385,
+          "stackoverflow_link": "https://stackoverflow.com/questions/72560837/custom-fastapi-query-parameter-validation"
+        },
+        {
+          "question": "Getting AttributeError: &#39;ASGIRequest&#39; object has no attribute &#39;get&#39; in daphne django",
+          "answer": "This error occurs because you're likely usingFastAPI in a Django project with Daphne, which is incompatible. FastAPI requires an ASGI server like Uvicorn, while Django uses Daphne. Here's the breakdown and solution:\n\n**Root Cause:**\n1. **FastAPI vs Django ASGI:** FastAPI expects an ASGI `Request` object with `get()` method for accessing query parameters. Django's Daphne provides an `ASGIRequest` object that lacks this method.\n2. **Incompatible Stack:** Using FastAPI with Django middleware (e.g., `django.middleware.common.CommonMiddleware`) causes this conflict.\n\n**Solution:**\n1. **Remove Django Middleware:** Disable conflicting middleware in `settings.py`:\n   ```python\n   MIDDLEWARE = [\n       # Remove or comment out:\n       # 'django.middleware.common.CommonMiddleware',\n       # ... other middleware ...\n   ]\n   ```\n\n2. **Use FastAPI's Native Query Parameters:** Replace Django's `request.GET` with FastAPI's dependency injection:\n   ```python\n   from fastapi import FastAPI, Depends, Query\n\n   app = FastAPI()\n\n   @app.get(\"/items/{item_id}\")\n   async def read_item(item_id: str, needy: str = Query(None)):\n       # Use FastAPI's Query dependency instead of request.GET\n       return {\"item_id\": item_id, \"needy\": needy}\n   ```\n\n3. **Verify ASGI Server:** Ensure you're using Uvicorn instead of Daphne:\n   ```bash\n   # Run with Uvicorn (FastAPI's default)\n   uvicorn main:app --reload\n   ```\n\n**Example Fix:**\n```python\n# app.py (FastAPI file)\nfrom fastapi import FastAPI, Depends, Query\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str, needy: str = Query(None)):\n    return {\"item_id\": item_id, \"needy\": needy}\n```\n\n**Why This Works:**\n- FastAPI's `Query` dependency automatically handles parsing and validation\n- Avoids Django's middleware interference\n- Uses Uvicorn's ASGI implementation (which supports `get()` on `Request`)\n\n**Key Takeaway:** FastAPI and Django are separate frameworks. Mixing them requires careful middleware configuration or using Django's ASGI adapter (like `django-asgi-fastapi`). For pure FastAPI projects, use Uvicorn and avoid Django middleware.",
+          "sources": [
+            "path-params",
+            "response-model",
+            "query-params"
+          ],
+          "topic": "Path Parameters and Type Validation",
+          "retrieval_distance": 0.8662047386169434,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 2,
+          "stackoverflow_views": 4146,
+          "stackoverflow_link": "https://stackoverflow.com/questions/68894317/getting-attributeerror-asgirequest-object-has-no-attribute-get-in-daphne-dj"
+        }
+      ],
+      "question_source": "StackOverflow",
+      "stackoverflow_questions_found": 5
+    },
+    {
+      "topic": "Request Body with Pydantic Models",
+      "faqs": [
+        {
+          "question": "FastAPI: &quot; ImportError: attempted relative import with no known parent package&quot;",
+          "answer": "The \"ImportError: attempted relative import with no known parent package\" typically occurs when your FastAPI application structure isn't properly set up as a Python package. Here's how to resolve it, based on general FastAPI best practices and project structure:\n\n**Solution:**\n\n1.  **Ensure Your Project is a Python Package:**\n    *   Create an empty `__init__.py` file in **every** directory that contains Python code (including your project root and any subdirectories like `main/` or `models/`).\n    *   **Example Structure:**\n        ```\n        your_project/\n        ├── __init__.py          # Required for the root package\n        ├── main.py              # Entry point (main app)\n        ├── models/\n        │   ├── __init__.py      # Required for the models package\n        │   └── item.py          # Contains your Pydantic model\n        └── ...\n        ```\n\n2.  **Use Absolute Imports in Your Code:**\n    *   Instead of relative imports (e.g., `from .models import Item`), use absolute imports. The absolute path is the full path from your project root.\n    *   **Example (main.py):**\n        ```python\n        from fastapi import FastAPI\n        from models.item import Item  # Absolute import\n\n        app = FastAPI()\n\n        @app.get(\"/\")\n        async def read_root():\n            return {\"message\": \"Hello World\"}\n\n        if __name__ == \"__main__\":\n            import uvicorn\n            uvicorn.run(app, host=\"0.0.0.0\", port=8000)\n        ```\n\n3.  **Run Your App Correctly:**\n    *   **Never** run your main module using `python main.py` directly if it contains relative imports. This will cause the import error.",
+          "sources": [
+            "response-model",
+            "first-steps",
+            "body"
+          ],
+          "topic": "Request Body with Pydantic Models",
+          "retrieval_distance": 0.7491918802261353,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 11,
+          "stackoverflow_views": 19394,
+          "stackoverflow_link": "https://stackoverflow.com/questions/70874423/fastapi-importerror-attempted-relative-import-with-no-known-parent-package"
+        },
+        {
+          "question": "OpenAPI is missing schemas for some of the Pydantic models in FastAPI app",
+          "answer": "Based on theprovided documentation, the most likely reason for missing OpenAPI schemas for Pydantic models in your FastAPI response is the **absence of the `response_model` parameter** in your path operation decorators.\n\nHere's why and how to fix it:\n\n1.  **The Core Issue:** FastAPI uses the `response_model` parameter to generate the OpenAPI schema for the *response body*. If you don't specify a `response_model`, FastAPI will try to use the return type of your function (e.g., `List[Item]` or `dict`) to infer the schema. However, if your return type is `Any` (as suggested in [Document 3] for type hints) or if the return type isn't a Pydantic model, the generated schema might be incomplete or incorrect.\n2.  **The Solution:** Explicitly declare a `response_model` using your Pydantic model. This tells FastAPI exactly what structure to document and validate for the response.\n3.  **How to Fix (Code Example):**\n\n    ```python\n    from typing import List\n    from pydantic import BaseModel\n    from fastapi import FastAPI\n\n    app = FastAPI()\n\n    class Item(BaseModel):\n        name: str\n        price: float\n\n    # Without response_model, schema might be missing or incorrect\n    @app.get(\"/items/\")\n    async def read_items():\n        # Returns a list of Item objects, but no response_model is set\n        return [{\"name\": \"Portal Gun\", \"price\": 42.0}, {\"name\": \"Plumbus\", \"price\": 32.0}]\n\n    # With response_model, schema is generated correctly\n    @app.get(\"/items/\")\n    async def read_items_with_model():\n        # Returns a list of Item objects, and we explicitly set the response_model\n        return [{\"name\": \"Portal Gun\", \"price\": 42.0}, {\"name\": \"Plumbus\", \"price\": 32.0}]\n        # Here, the response_model is inferred from the return type (List[Item])\n        # But if you wanted to be explicit:\n        # return [{\"name\": \"Portal Gun\", \"price\": 42.0}, {\"name\": \"Plumbus\", \"price\": 32.0}]\n        # response_model=List[Item]  # This is redundant here, but shown for clarity\n\n    # For a single item response\n    @app.get(\"/items/{item_id}\")\n    async def read_item(item_id: int, item: Item):\n        return item  # response_model is inferred from the return type (Item)\n    ```\n\n**Key Takeaway:** To ensure FastAPI generates a proper OpenAPI schema for your Pydantic model's response, **always include `response_model` in your path operation decorator** (e.g., `@app.get(...",
+          "sources": [
+            "body",
+            "path-params",
+            "response-model"
+          ],
+          "topic": "Request Body with Pydantic Models",
+          "retrieval_distance": 0.6191260814666748,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 8,
+          "stackoverflow_views": 7714,
+          "stackoverflow_link": "https://stackoverflow.com/questions/71941127/openapi-is-missing-schemas-for-some-of-the-pydantic-models-in-fastapi-app"
+        },
+        {
+          "question": "Equivalent of Marshmallow dump_only fields for Pydantic/FastAPI without multiple schemas",
+          "answer": "To achieve the equivalentof Marshmallow's `dump_only` fields in Pydantic/FastAPI without creating multiple schemas, use **Pydantic's `Config` class with `exclude`** or **FastAPI's `response_model`** to filter output fields. Here's how:\n\n### 1. **Using Pydantic's `Config` (Model-Level)**\nExclude fields from serialization without altering the model definition:\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel, Field\n\napp = FastAPI()\n\nclass User(BaseModel):\n    id: int\n    username: str\n    password: str  # Never expose in responses\n\n    class Config:\n        # Exclude `password` from all output (like dump_only)\n        exclude = [\"password\"]\n\n@app.get(\"/users/{user_id}\")\nasync def read_user(user_id: int, user: User = Depends(get_user)):\n    return user  # `password` is automatically excluded\n```\n**Source:** [Document 2: response_model]  \n**Note:** `exclude` works for both input validation and output filtering.\n\n---\n\n### 2. **Using FastAPI's `response_model` (Path Operation)**\nFilter fields at the endpoint level using a Pydantic model with only the desired fields:\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel,",
           "sources": [
             "body",
             "response-model",
             "response-model"
           ],
-          "topic": "Database Integration",
-          "retrieval_distance": 1.1144425868988037,
+          "topic": "Request Body with Pydantic Models",
+          "retrieval_distance": 0.5523067712783813,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 4,
-          "stackoverflow_views": 278,
-          "stackoverflow_link": "https://stackoverflow.com/questions/79764955/pytest-in-fastapi-postgres-results-in-sys0-runtimewarning-coroutine-con"
-        },
+          "stackoverflow_score": 6,
+          "stackoverflow_views": 3715,
+          "stackoverflow_link": "https://stackoverflow.com/questions/70328646/equivalent-of-marshmallow-dump-only-fields-for-pydantic-fastapi-without-multiple"
+        }
+      ],
+      "question_source": "StackOverflow",
+      "stackoverflow_questions_found": 5
+    },
+    {
+      "topic": "File Uploads and Form Data Handling",
+      "faqs": [
         {
-          "question": "Tests with FastAPI and PostgreSQL",
-          "answer": "This information is not availablein the knowledge base.",
+          "question": "Get data from a dropdown menu with FastAPI",
+          "answer": "Toretrieve data from a dropdown menu in FastAPI, use the `Form` parameter type. Dropdown data is sent as `application/x-www-form-urlencoded` form data, not JSON or multipart/form-data. Here's how to implement it:\n\n### Example\n```python\nfrom fastapi import FastAPI, Form\n\napp = FastAPI()\n\n@app.post(\"/dropdown/\")\nasync def handle_dropdown(selected_value: str = Form(...)):\n    \"\"\"\n    Handles a dropdown selection.\n    The `Form` parameter tells FastAPI to:\n    1. Read data from the form data body\n    2. Decode it as application/x-www-form-urlencoded\n    3. Map it to the parameter\n    \"\"\"\n    return {\"selected_value\": selected_value}\n\n# HTML form example\nhtml_form = \"\"\"\n<form method=\"POST\" action=\"/dropdown/\">\n    <label for=\"color\">Select a color:</label>\n    <select name=\"color\" id=\"color\">\n        <option value=\"red\">Red</option>\n        <option value=\"green\">Green</option>\n        <option value=\"blue\">Blue</option>\n    </select>\n    <button type=\"submit\">Submit</button>\n</form>\n\"\"\"\n```\n\n### Key Points\n1. **Parameter Type**: Use `Form` instead of `File` or `Body`\n2. **Data Source**: Form data is automatically decoded from the request body\n3. **Validation**: Add validation directly to the parameter (e.g., `Form(..., max_length=10)`)\n4. **Multiple Fields**: Declare multiple `Form` parameters for multiple form fields\n\n### Full Example with Validation\n```python\n@app.post(\"/user/\")\nasync def create_user(\n    username: str = Form(..., min_length=3, max_length=50),\n    role: str = Form(..., enum=[\"admin\", \"user\", \"guest\"])\n):\n    return {\"user_created\": True}\n```\n\n### When to Use This\n- For traditional web forms with text inputs, checkboxes, or dropdowns\n- When working with HTML forms that don't include file uploads\n- When you need to handle form-encoded data (not JSON)\n\n> **Source**: [Document 2 - Form Data Handling](https://fastapi.tiangolo.com/tutorial/request-forms/) (Form parameters are specifically designed for this use case)",
           "sources": [
-            "path-params",
-            "dependencies",
-            "response-model"
+            "request-files",
+            "request-files",
+            "request-files"
           ],
-          "topic": "Database Integration",
-          "retrieval_distance": 0.9562373757362366,
+          "topic": "File Uploads and Form Data Handling",
+          "retrieval_distance": 0.6797149181365967,
           "stackoverflow_origin": true,
           "stackoverflow_score": 3,
-          "stackoverflow_views": 4255,
-          "stackoverflow_link": "https://stackoverflow.com/questions/76530308/tests-with-fastapi-and-postgresql"
+          "stackoverflow_views": 12625,
+          "stackoverflow_link": "https://stackoverflow.com/questions/68033119/get-data-from-a-dropdown-menu-with-fastapi"
+        },
+        {
+          "question": "Upload a file from form in S3 bucket using boto3 and handler is created in lambda",
+          "answer": "To uploada file from a form to an S3 bucket using FastAPI and boto3 in a Lambda handler, follow these steps:\n\n### 1. **FastAPI File Upload Endpoint**\nUse `UploadFile` from FastAPI to handle multipart/form-data uploads. This provides a stream interface for efficient large-file handling.\n\n```python\nfrom fastapi import FastAPI, File, UploadFile\nfrom typing import List\n\napp = FastAPI()\n\n@app.post(\"/upload_to_s3/\")\nasync def upload_file_to_s3(\n    file: UploadFile  # Handles multipart/form-data\n) -> dict:\n    # Process file using boto3 (see Lambda",
+          "sources": [
+            "request-files",
+            "request-files",
+            "request-files"
+          ],
+          "topic": "File Uploads and Form Data Handling",
+          "retrieval_distance": 0.7149893045425415,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 0,
+          "stackoverflow_views": 1589,
+          "stackoverflow_link": "https://stackoverflow.com/questions/70260247/upload-a-file-from-form-in-s3-bucket-using-boto3-and-handler-is-created-in-lambd"
+        },
+        {
+          "question": "How to handle large uploadfile in FastAPI?",
+          "answer": "To handle large file uploadsin FastAPI efficiently, **always use `UploadFile` instead of `bytes`** for your parameters. This leverages streaming and prevents loading the entire file into memory. Here's how to implement it:\n\n### 1. **Single Large File Upload**\n```python\nfrom fastapi import FastAPI, File, UploadFile\n\napp = FastAPI()\n\n@app.post(\"/upload/\")\nasync def upload_file(file: UploadFile = File(...)):\n    # Read file in chunks to avoid memory overload\n    async with file.stream as stream:\n        content = await stream.read()\n        # Process content (e.g., save to disk, analyze)\n    return {\"filename\": file.filename, \"size\": len(content)}\n```\n\n### 2. **Multiple Large Files Upload**\n```python\n@app.post(\"/upload-multiple/\")\nasync def upload_multiple_files(files: list[UploadFile] = File(...)):\n    filenames = []\n    for file in files:\n        async with file.stream as stream:\n            content = await stream.read()\n            filenames.append(file.filename)\n    return {\"filenames\": filenames}\n```\n\n### Key Points:\n- **Streaming**: `UploadFile.stream` provides an async stream to read/write files incrementally.\n- **Memory Efficiency**: Files are processed in chunks (default chunk size is 8KB), avoiding memory exhaustion.\n- **Server Configuration**: Ensure your server supports large uploads (e.g., `max_size` in `FastAPI` settings).\n- **Form Data**: Files are sent as `multipart/form-data`; FastAPI handles this automatically.\n\n### Why Avoid `bytes`?\n- Using `bytes` loads the **entire file into memory**, which fails for large files (e.g., >100MB).\n\n### Example HTML Form\n```html\n<form action=\"/upload/\" enctype=\"multipart/form-data\" method=\"post\">\n  <input type=\"file\" name=\"file\" accept=\"*/*\">\n  <button type=\"submit\">Upload</button>\n</form>\n```\n\n### Notes:\n- Use `accept=\"*/*\"` to allow all file types.\n- For very large files, consider chunked",
+          "sources": [
+            "request-files",
+            "request-files",
+            "request-files"
+          ],
+          "topic": "File Uploads and Form Data Handling",
+          "retrieval_distance": 0.49546051025390625,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 0,
+          "stackoverflow_views": 49,
+          "stackoverflow_link": "https://stackoverflow.com/questions/76449372/how-to-handle-large-uploadfile-in-fastapi"
         }
       ],
       "question_source": "StackOverflow",
