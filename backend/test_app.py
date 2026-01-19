@@ -77,13 +77,15 @@ def summarize_docs():
 
 class FAQRequest(BaseModel):
     custom_topics: list[str] | None = None
+    strict_mode: bool = True
 
 
 @app.post("/faqs")
 def generate_faqs(payload: FAQRequest = None):
     agent = FAQAgent()
     custom_topics = payload.custom_topics if payload else None
-    result = agent.run(custom_topics=custom_topics)
+    strict_mode = payload.strict_mode if payload else True
+    result = agent.run(custom_topics=custom_topics, strict_mode=strict_mode)
     return {
         "status": "success",
         "message": "FAQs generated",
@@ -102,7 +104,8 @@ def ask_question(payload: AskRequest):
         return {
             "status": "success",
             "question": result["question"],
-            "answer": result["answer"]
+            "answer": result["answer"],
+            "sources": result.get("sources", [])
         }
     except Exception as e:
         return {
@@ -176,4 +179,33 @@ def get_data():
         return {
             "status": "error",
             "message": str(e),
+        }
+
+@app.get("/inspect-kb")
+def inspect_knowledge_base():
+    """
+    Inspect the knowledge base and return available sources/topics
+    """
+    try:
+        agent = FAQAgent()
+        kb_info = agent.inspect_knowledge_base()
+        
+        return {
+            "status": "success",
+            "data": {
+                "total_documents": kb_info["total_documents"],
+                "sources": kb_info["sources"],
+                "sample_content": [
+                    {
+                        "source": meta.get("source", "Unknown"),
+                        "preview": doc[:200]
+                    }
+                    for doc, meta in zip(kb_info["documents"][:5], kb_info["metadatas"][:5])
+                ]
+            }
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
         }

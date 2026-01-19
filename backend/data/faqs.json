@@ -1,104 +1,104 @@
 {
   "topics": [
     {
-      "topic": "Path and Query Parameters",
+      "topic": "Authentication",
       "faqs": [
         {
-          "question": "How to get current path in FastAPI with domain?",
-          "answer": "This information is not available in the knowledgebase. The provided documents ([Source: path-params], [Source: path-params], [Source: path-params]) only cover path parameters, path order, and path converters, but do not describe retrieving the full URL (including domain) in FastAPI.",
+          "question": "FastAPI StreamingResponse not streaming with generator function",
+          "answer": "This information is not available in the knowledgebase.",
           "sources": [
-            "path-params",
-            "path-params",
-            "path-params"
-          ],
-          "topic": "Path and Query Parameters",
-          "retrieval_distance": 0.8749841451644897,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 27,
-          "stackoverflow_views": 40277,
-          "stackoverflow_link": "https://stackoverflow.com/questions/70477787/how-to-get-current-path-in-fastapi-with-domain"
-        },
-        {
-          "question": "How to use url_for() to pass path and query data to a route using FastAPI and Jinja2?",
-          "answer": "This information is notavailable in the knowledge base.",
-          "sources": [
-            "path-params",
-            "query-params",
-            "path-params"
-          ],
-          "topic": "Path and Query Parameters",
-          "retrieval_distance": 0.7572672367095947,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 9,
-          "stackoverflow_views": 10485,
-          "stackoverflow_link": "https://stackoverflow.com/questions/66495961/how-to-use-url-for-to-pass-path-and-query-data-to-a-route-using-fastapi-and-ji"
-        },
-        {
-          "question": "OpenAPI is missing schemas for some of the Pydantic models in FastAPI app",
-          "answer": "This informationis not available in the knowledge base.",
-          "sources": [
-            "path-params",
             "response-model",
+            "path-params",
             "response-model"
           ],
-          "topic": "Path and Query Parameters",
-          "retrieval_distance": 0.6565118432044983,
+          "topic": "Authentication",
+          "retrieval_distance": 1.0056345462799072,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 8,
-          "stackoverflow_views": 7709,
-          "stackoverflow_link": "https://stackoverflow.com/questions/71941127/openapi-is-missing-schemas-for-some-of-the-pydantic-models-in-fastapi-app"
+          "stackoverflow_score": 42,
+          "stackoverflow_views": 86813,
+          "stackoverflow_link": "https://stackoverflow.com/questions/75740652/fastapi-streamingresponse-not-streaming-with-generator-function"
+        },
+        {
+          "question": "FastAPI dependency vs middleware",
+          "answer": "This information is not available in theknowledge base. The provided documents only discuss FastAPI's dependency injection system and security mechanisms, but do not mention middleware or provide any comparison between dependencies and middleware. [Source: dependencies] [Source: dependencies] [Source: security]",
+          "sources": [
+            "dependencies",
+            "dependencies",
+            "security"
+          ],
+          "topic": "Authentication",
+          "retrieval_distance": 0.8504822254180908,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 25,
+          "stackoverflow_views": 18408,
+          "stackoverflow_link": "https://stackoverflow.com/questions/66632841/fastapi-dependency-vs-middleware"
+        },
+        {
+          "question": "FASTAPI custom middleware getting body of request inside",
+          "answer": "This information is not available in the knowledgebase.  \n[Document 2: middleware]",
+          "sources": [
+            "body",
+            "middleware",
+            "request-files"
+          ],
+          "topic": "Authentication",
+          "retrieval_distance": 0.702590823173523,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 19,
+          "stackoverflow_views": 37259,
+          "stackoverflow_link": "https://stackoverflow.com/questions/69669808/fastapi-custom-middleware-getting-body-of-request-inside"
         }
       ],
       "question_source": "StackOverflow",
       "stackoverflow_questions_found": 5
     },
     {
-      "topic": "Dependency Injection",
+      "topic": "Request Validation",
       "faqs": [
         {
-          "question": "Using a dependency without having to pass it through a function tree",
-          "answer": "You can use a dependencywithout passing it through a function tree by declaring it directly in the path operation function using the `Depends` decorator. FastAPI automatically handles the dependency injection and execution flow. This is demonstrated in the documentation where dependencies are attached to path operation functions via `Depends`, eliminating the need for manual function tree traversal. [Source: dependencies]",
+          "question": "Can I override fields from a Pydantic parent model to make them optional?",
+          "answer": "This information is not available in the knowledgebase.",
           "sources": [
-            "dependencies",
-            "dependencies",
-            "dependencies"
+            "response-model",
+            "body",
+            "response-model"
           ],
-          "topic": "Dependency Injection",
-          "retrieval_distance": 0.5377084612846375,
+          "topic": "Request Validation",
+          "retrieval_distance": 0.6883794665336609,
+          "stackoverflow_origin": true,
+          "stackoverflow_score": 38,
+          "stackoverflow_views": 81022,
+          "stackoverflow_link": "https://stackoverflow.com/questions/65883869/can-i-override-fields-from-a-pydantic-parent-model-to-make-them-optional"
+        },
+        {
+          "question": "Using FastAPI &amp; Pydantic, how do I define an Optional field with a description",
+          "answer": "To define anOptional field with a description in a FastAPI request body using Pydantic, declare the field in your Pydantic model with a default value of `None` and include a `description` parameter. For example:\n\n```python\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    description: str = None  # Optional field with default None\n    description: str = None  # Example with explicit description\n    description: str = None, description=\"A brief description of the item\"  # With description\n```\n\nThis approach uses the default value `None` to indicate the field is optional, and the `description` parameter adds documentation. FastAPI recognizes `None` as a default value to determine optionality, while Pydantic handles validation and serialization. ([Source: body])",
+          "sources": [
+            "body",
+            "response-model",
+            "response-model"
+          ],
+          "topic": "Request Validation",
+          "retrieval_distance": 0.6635265350341797,
           "stackoverflow_origin": true,
           "stackoverflow_score": 24,
-          "stackoverflow_views": 27961,
-          "stackoverflow_link": "https://stackoverflow.com/questions/66464098/using-a-dependency-without-having-to-pass-it-through-a-function-tree"
+          "stackoverflow_views": 55594,
+          "stackoverflow_link": "https://stackoverflow.com/questions/67569529/using-fastapi-pydantic-how-do-i-define-an-optional-field-with-a-description"
         },
         {
-          "question": "How do I Inject Dependencies in FastAPI&#39;s Lifespan Context / startup event?",
-          "answer": "This information is notavailable in the knowledge base.",
+          "question": "FastAPI - Pydantic - Value Error Raises Internal Server Error",
+          "answer": "This information is not available in the knowledge base.",
           "sources": [
-            "dependencies",
-            "dependencies",
-            "dependencies"
+            "path-params",
+            "body",
+            "response-model"
           ],
-          "topic": "Dependency Injection",
-          "retrieval_distance": 0.646083652973175,
+          "topic": "Request Validation",
+          "retrieval_distance": 0.7691048383712769,
           "stackoverflow_origin": true,
-          "stackoverflow_score": 9,
-          "stackoverflow_views": 4654,
-          "stackoverflow_link": "https://stackoverflow.com/questions/78923525/how-do-i-inject-dependencies-in-fastapis-lifespan-context-startup-event"
-        },
-        {
-          "question": "How does FastAPI&#39;s application mounting works?",
-          "answer": "This information is not availablein the knowledge base.",
-          "sources": [
-            "dependencies",
-            "dependencies",
-            "first-steps"
-          ],
-          "topic": "Dependency Injection",
-          "retrieval_distance": 0.6066552996635437,
-          "stackoverflow_origin": true,
-          "stackoverflow_score": 8,
-          "stackoverflow_views": 15357,
-          "stackoverflow_link": "https://stackoverflow.com/questions/64323261/how-does-fastapis-application-mounting-works"
+          "stackoverflow_score": 20,
+          "stackoverflow_views": 40607,
+          "stackoverflow_link": "https://stackoverflow.com/questions/68914523/fastapi-pydantic-value-error-raises-internal-server-error"
         }
       ],
       "question_source": "StackOverflow",
@@ -109,7 +109,7 @@
       "faqs": [
         {
           "question": "Pydantic created at and updated at fields",
-          "answer": "This information is notavailable in the knowledge base. [Source: response-model], [Source: body], [Source: body]",
+          "answer": "This informationis not available in the knowledge base.",
           "sources": [
             "response-model",
             "body",
@@ -119,12 +119,12 @@
           "retrieval_distance": 0.7878073453903198,
           "stackoverflow_origin": true,
           "stackoverflow_score": 7,
-          "stackoverflow_views": 14061,
+          "stackoverflow_views": 14089,
           "stackoverflow_link": "https://stackoverflow.com/questions/73128975/pydantic-created-at-and-updated-at-fields"
         },
         {
           "question": "Pytest in FastAPI + Postgres results in: &lt;sys&gt;:0: RuntimeWarning: coroutine &#39;Connection._cancel&#39; was never awaited",
-          "answer": "This information is not available in the knowledge base. The provided documents ([Source: body], [Source: response-model], [Source: response-model]) discuss Pydantic models for request and response bodies, response models, and disabling response models, but do not cover coroutine handling, database connections, or the specific `RuntimeWarning: coroutine 'Connection._cancel' was never awaited` encountered with Pytest and Postgres.",
+          "answer": "This informationis not available in the knowledge base.",
           "sources": [
             "body",
             "response-model",
@@ -134,12 +134,12 @@
           "retrieval_distance": 1.1144425868988037,
           "stackoverflow_origin": true,
           "stackoverflow_score": 4,
-          "stackoverflow_views": 274,
+          "stackoverflow_views": 278,
           "stackoverflow_link": "https://stackoverflow.com/questions/79764955/pytest-in-fastapi-postgres-results-in-sys0-runtimewarning-coroutine-con"
         },
         {
           "question": "Tests with FastAPI and PostgreSQL",
-          "answer": "Thisinformation is not available in the knowledge base.",
+          "answer": "This information is not availablein the knowledge base.",
           "sources": [
             "path-params",
             "dependencies",
@@ -149,7 +149,7 @@
           "retrieval_distance": 0.9562373757362366,
           "stackoverflow_origin": true,
           "stackoverflow_score": 3,
-          "stackoverflow_views": 4240,
+          "stackoverflow_views": 4255,
           "stackoverflow_link": "https://stackoverflow.com/questions/76530308/tests-with-fastapi-and-postgresql"
         }
       ],

@@ -306,6 +306,67 @@
   flex-wrap: wrap;
 }
 
+.strict-mode-toggle {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-checkbox {
+  width: 48px;
+  height: 24px;
+  background: #3a3a3a;
+  border-radius: 12px;
+  position: relative;
+  appearance: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  outline: none;
+}
+
+.toggle-checkbox:checked {
+  background: #61dafb;
+}
+
+.toggle-checkbox::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s;
+}
+
+.toggle-checkbox:checked::before {
+  transform: translateX(24px);
+}
+
+.toggle-text {
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.toggle-description {
+  margin: 0.75rem 0 0 0;
+  color: #999;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
 .action-button-secondary {
   padding: 0.75rem 2rem;
   background: #2a2a2a;
@@ -355,21 +416,77 @@
 
 .faq-item {
   margin-bottom: 1rem;
-  padding: 0.75rem;
+  padding: 1rem;
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 4px;
 }
 
 .faq-item p {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
   line-height: 1.5;
   color: #e0e0e0;
   font-size: 0.9rem;
 }
 
+.faq-question {
+  color: #e0e0e0;
+  margin-bottom: 0.75rem;
+}
+
+.faq-answer {
+  color: #d0d0d0;
+  margin-bottom: 0.75rem;
+}
+
+.faq-sources {
+  color: #999;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  background: #0d0d0d;
+  border-left: 2px solid #666;
+  margin-top: 0.5rem;
+}
+
+.faq-link {
+  margin-top: 0.5rem;
+}
+
+.faq-link a {
+  color: #61dafb;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.faq-link a:hover {
+  text-decoration: underline;
+}
+
 .faq-item strong {
   color: #aaa;
+}
+
+.faqs-container {
+  padding: 1rem 0;
+}
+
+.faq-metadata {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+}
+
+.faq-metadata h4 {
+  color: #e0e0e0;
+  margin-bottom: 0.75rem;
+}
+
+.faq-metadata p {
+  color: #bbb;
+  font-size: 0.85rem;
+  margin: 0.25rem 0;
 }
 
 .summaries {

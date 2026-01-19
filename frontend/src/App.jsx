@@ -8,6 +8,7 @@ function App() {
   const [currentMode, setCurrentMode] = useState('ask')
   const [fileContents, setFileContents] = useState({})
   const [faqTopics, setFaqTopics] = useState(['', '', ''])
+  const [strictMode, setStrictMode] = useState(true)
   const [generatedContent, setGeneratedContent] = useState(null)
   const [faqAction, setFaqAction] = useState(null) // 'view' or 'generate'
   const [summaryAction, setSummaryAction] = useState(null) // 'view' or 'generate'
@@ -95,7 +96,10 @@ function App() {
 
     // Filter out empty topics
     const topics = faqTopics.filter(t => t.trim() !== '')
-    const payload = topics.length > 0 ? { custom_topics: topics } : {}
+    const payload = {
+      custom_topics: topics.length > 0 ? topics : null,
+      strict_mode: strictMode
+    }
 
     try {
       const response = await fetch(`${API_BASE}/faqs`, {
@@ -136,7 +140,7 @@ function App() {
       const data = await response.json()
 
       if (data.status === 'success') {
-        addMessage(data.answer, 'bot')
+        addMessage({ answer: data.answer, sources: data.sources || [] }, 'bot')
       } else {
         addMessage(`Error: ${data.error || 'Unknown error'}`, 'error')
       }
@@ -302,23 +306,52 @@ function App() {
   const renderFAQs = (content) => {
     try {
       const jsonContent = JSON.parse(content);
+      
+      if (!jsonContent.topics || jsonContent.topics.length === 0) {
+        return <p>No FAQs available</p>;
+      }
+
       return (
-        <div>
+        <div className="faqs-container">
           {jsonContent.topics.map((topic, index) => (
             <div key={index} className="faq-topic">
               <h3>{topic.topic}</h3>
-              {topic.faqs.map((faq, idx) => (
-                <div key={idx} className="faq-item">
-                  <p><strong>Q:</strong> {formatText(faq.question)}</p>
-                  <p><strong>A:</strong> {formatText(faq.answer)}</p>
-                </div>
-              ))}
+              {topic.faqs && topic.faqs.length > 0 ? (
+                topic.faqs.map((faq, idx) => (
+                  <div key={idx} className="faq-item">
+                    <p className="faq-question"><strong>Q:</strong> {formatText(faq.question)}</p>
+                    <p className="faq-answer"><strong>A:</strong> {formatText(faq.answer)}</p>
+                    {faq.sources && faq.sources.length > 0 && (
+                      <p className="faq-sources"><em>Sources: {faq.sources.join(', ')}</em></p>
+                    )}
+                    {faq.stackoverflow_link && (
+                      <p className="faq-link">
+                        <a href={faq.stackoverflow_link} target="_blank" rel="noopener noreferrer">
+                          View on Stack Overflow
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No FAQs for this topic</p>
+              )}
             </div>
           ))}
+          {jsonContent.metadata && (
+            <div className="faq-metadata">
+              <hr />
+              <h4>Metadata</h4>
+              <p>Questions from: {jsonContent.metadata.question_source}</p>
+              <p>Answers from: {jsonContent.metadata.answer_source}</p>
+              <p>Total Topics: {jsonContent.metadata.total_topics}</p>
+              <p>Total FAQs: {jsonContent.metadata.total_faqs}</p>
+            </div>
+          )}
         </div>
       );
     } catch (error) {
-      return <p>Error parsing FAQ content</p>;
+      return <p>Error parsing FAQ content: {error.message}</p>;
     }
   };
 
@@ -390,9 +423,24 @@ function App() {
                 messages.map((msg, idx) => (
                   <div key={idx} className={`message message-${msg.type}`}>
                     <div className="message-content">
-                      {msg.content.split('\n').map((line, i) => (
-                        <p key={i}>{line}</p>
-                      ))}
+                      {typeof msg.content === 'string' ? (
+                        msg.content.split('\n').map((line, i) => (
+                          <p key={i}>{formatText(line)}</p>
+                        ))
+                      ) : (
+                        <>
+                          {msg.content.answer.split('\n').map((line, i) => (
+                            <p key={i}>{formatText(line)}</p>
+                          ))}
+                          {msg.content.sources && msg.content.sources.length > 0 && (
+                            <div className="message-sources">
+                              <p style={{ fontStyle: 'italic', marginTop: '10px', fontSize: '0.9em', color: '#666' }}>
+                                <strong>Sources:</strong> {msg.content.sources.join(', ')}
+                              </p>
+                            </div>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 ))
@@ -482,6 +530,24 @@ function App() {
                           className="topic-input"
                         />
                       ))}
+                    </div>
+                    <div className="strict-mode-toggle">
+                      <label className="toggle-label">
+                        <input
+                          type="checkbox"
+                          checked={strictMode}
+                          onChange={(e) => setStrictMode(e.target.checked)}
+                          className="toggle-checkbox"
+                        />
+                        <span className="toggle-text">
+                          Strict Mode {strictMode ? 'ON' : 'OFF'}
+                        </span>
+                      </label>
+                      <p className="toggle-description">
+                        {strictMode 
+                          ? '🔒 Answers only from knowledge base (may return "not available")' 
+                          : '🔓 Flexible answers using general FastAPI knowledge'}
+                      </p>
                     </div>
                     <div className="action-buttons">
                       <button

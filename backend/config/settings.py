@@ -35,3 +35,5 @@ print(f"🔧 Model: {LLM_MODEL}")
 
 # Use Mock LLM for testing (no API key needed)
 USE_MOCK_LLM = os.getenv("USE_MOCK_LLM", "false").lower() == "true"
+
+print(f"🔧 USE_MOCK_LLM: {USE_MOCK_LLM}")
